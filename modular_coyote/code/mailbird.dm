@@ -68,7 +68,7 @@
 	icon = 'modular_coyote/icons/mob/bird.dmi'
 	icon_state = "crow-glide"
 	alpha = 0
-	var/mob/living/carbon/caller
+	var/mob/living/carbon/callerthing
 	var/atom/movable/following
 	var/datum/component/mailbird_movement/component
 	var/TargetName
@@ -76,9 +76,10 @@
 
 /obj/effect/mailbird/Initialize(mapload, mob/living/carbon/C)
 	. = ..()
-	caller = C
-	following = C
-	component = src.AddComponent(/datum/component/mailbird_movement, C)
+	var/mob/living/carbon/c = C
+	callerthing = c
+	following = c
+	component = src.AddComponent(/datum/component/mailbird_movement, c)
 	var/delayRespond = rand(2,4) SECONDS
 	var/delayAnim = delayRespond + rand(1,2) SECONDS
 	var/delayQuery = delayAnim + 1.5 SECONDS
